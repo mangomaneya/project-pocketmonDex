@@ -1,10 +1,14 @@
-import Router from './shared/Router'
+import { Fragment } from "react";
+import Router from "./shared/Router";
+import GlobalStyles from "./style/GlobalStyles";
 
 function App() {
-
   return (
-    <Router/>
-  )
+    <Fragment>
+      <GlobalStyles />
+      <Router />
+    </Fragment>
+  );
 }
 
-export default App
+export default App;
