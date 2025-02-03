@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     color-scheme: light dark;
     color: #ffffffde;
-    /* background-color: #ffe4b8; */
+    background-color: #ffe4b8;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -28,6 +28,9 @@ const GlobalStyles = createGlobalStyle`
     min-width: 320px;
     min-height: 100vh;
     }
+    .app-container {
+    width: 100%;
+  }
 `;
 
 export default GlobalStyles;

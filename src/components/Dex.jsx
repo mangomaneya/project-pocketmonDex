@@ -1,8 +1,8 @@
 // import { useState, useEffect } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
+import StContainer from "../style/StContainer";
 import Dashboard from "./Dashboard";
 import PokemonList from "./PokemonList";
-import { Fragment } from "react";
 // import supabase from "../../supabaseClient";
 
 const Dex = () => {
@@ -22,10 +22,10 @@ const Dex = () => {
   // }, []);
 
   return (
-    <Fragment>
+    <StContainer>
       <Dashboard />
       <PokemonList />
-    </Fragment>
+    </StContainer>
   );
 };
 
