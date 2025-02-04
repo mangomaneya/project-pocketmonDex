@@ -16,12 +16,12 @@ import { useState } from "react";
     width: 100%;
     border-radius: 8px;
   `;
-const Dashboard = ({myPokeList}) => {
+const Dashboard = ({ myPokeMons}) => {
   
   return (
     <DexContainer>
       <Title>나만의 포켓몬</Title>
-      <MyPokemon myPokeList={myPokeList}></MyPokemon>
+      <MyPokemon myPokeMons={myPokeMons}></MyPokemon>
     </DexContainer>
   );
 };

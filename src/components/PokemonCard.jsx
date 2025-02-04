@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import StButton from "../style/StButton";
 
-const PokeCard = styled.div`
+export const PokeCard = styled.div`
   color: black;
   background-color: #ffffff;
   /* border : 1px solid black; */
@@ -16,7 +16,7 @@ const PokeCard = styled.div`
   align-items: center;
   gap: 12px;
 `;
-const CardBtn = styled(StButton)`
+export const CardBtn = styled(StButton)`
   width: fit-content;
   padding: 10px 18px;
   font-size: 18px;
