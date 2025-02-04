@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CardBtn, PokeCard } from "./PokemonCard";
+import PokemonCard, { CardBtn, PokeCard } from "./PokemonCard";
 import { useMemo } from "react";
 
 const BallBox = styled.div`
@@ -9,6 +9,12 @@ const BallBox = styled.div`
   border-radius: 12px;
   background-color: white;
   width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
 
   img {
     width: 88px;
@@ -17,8 +23,9 @@ const BallBox = styled.div`
 `;
 const FlexRowDiv = styled.section`
   display: flex;
+  margin-top: 36px;
 `;
-const MyPokemon = ({ myPokeMons }) => {
+const MyPokemon = ({ myPokeMons, getOutMyPoke }) => {
   // gpt 도움 받음
   // useMemo를 사용하여 ballOfSix 배열을 캐싱
   const ballOfSix = useMemo(() => {
@@ -35,17 +42,20 @@ const MyPokemon = ({ myPokeMons }) => {
         //ballOfSix 항목이 null이면 포켓볼을 렌더링 하고
         //ballOfSix 항목이 null이 아니면 카드를 렌더링한다.
         ballOfSix.map((ball) => {
-          return ball === null ? (
-            <BallBox key={crypto.randomUUID()}>
-              <img src="/src/assets/pokeball.png" alt="pokemon ball" />
-            </BallBox>
-          ) : (
-            <PokeCard key={ball.id}>
-              <p>{ball.korean_name}</p>
-              <img src={ball.img_url}></img>
-              <p>{ball.description}</p>
-              <CardBtn>삭제</CardBtn>
-            </PokeCard>
+          if (ball === null) {
+            return (
+              <BallBox key={crypto.randomUUID()}>
+                <img src="/src/assets/pokeball.png" alt="pokemon ball" />
+              </BallBox>
+            );
+          }
+          return (
+            <PokemonCard
+              key={ball.id}
+              pokemon={ball}
+              getOutMyPoke={getOutMyPoke}
+              btnName="삭제"
+            />
           );
         })
       }

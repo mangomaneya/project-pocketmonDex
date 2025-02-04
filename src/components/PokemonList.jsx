@@ -18,10 +18,16 @@ const ListContainer = styled.div`
 const PokemonList = ({ pokemonList, addInMyPoke }) => {
   return (
     <ListContainer>
-      <PokemonCard
-        pokemonList={pokemonList}
-        addInMyPoke={addInMyPoke}
-      ></PokemonCard>
+      {pokemonList.map((pokemon) => {
+        return (
+          <PokemonCard
+            key={pokemon.id}
+            pokemon={pokemon}
+            addInMyPoke={addInMyPoke}
+            btnName="추가"
+          ></PokemonCard>
+        );
+      })}
     </ListContainer>
   );
 };

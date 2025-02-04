@@ -27,22 +27,32 @@ const Dex = () => {
     const isContain = myPokeMons.some((myPokemon) => {
       return myPokemon.id === pokemon.id;
     });
-    if(isContain){
-      alert(`이미 선택된 포켓몬은 추가 할 수 없습니다.`)
-      return 
+    if (myPokeMons.length >= 6) {
+      alert(`포켓몬은 최대 6마리만 선택할 수 있습니다.`);
+      return;
     }
-    if(myPokeMons.length>6){
-      alert(`포켓몬은 최대 6마리만 선택할 수 있습니다.`)
-      return 
+    if (isContain) {
+      alert(`이미 선택된 포켓몬은 추가 할 수 없습니다.`);
+      return;
     }
-
-    setMyPokeMons([...myPokeMons, pokemon])
+    // console.log("myPokeMons in Dex =>", myPokeMons);
+    setMyPokeMons([...myPokeMons, pokemon]);
     // console.log(isContain);
+  };
+
+  const getOutMyPoke = (pokemon) => {
+    // const inMyPokeIds = myPokeMons.map((pokemon)=> pokemon.id)
+    const removedMyPokemons = myPokeMons.filter((myPokemon) => {
+      if (myPokemon.id !== pokemon.id) {
+        return pokemon;
+      }
+    });
+    setMyPokeMons(removedMyPokemons);
   };
 
   return (
     <>
-      <Dashboard myPokeMons={myPokeMons} />
+      <Dashboard myPokeMons={myPokeMons} getOutMyPoke={getOutMyPoke} />
       <PokemonList pokemonList={pokemon} addInMyPoke={addInMyPoke} />
     </>
   );

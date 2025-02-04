@@ -10,11 +10,18 @@ export const PokeCard = styled.div`
   height: auto;
   padding: 22px 12px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+
+  transition: all ease-in-out 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 export const CardBtn = styled(StButton)`
   width: fit-content;
@@ -26,25 +33,27 @@ export const CardBtn = styled(StButton)`
   color: #ffffff;
 `;
 
-const PokemonCard = ({ pokemonList, addInMyPoke }) => {
+const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
   // console.log("addInMyPoke =>", addInMyPoke);
   const addHandler = (pokemon) => {
     addInMyPoke(pokemon);
   };
+  const { id, korean_name, img_url } = pokemon;
 
   return (
     <>
-      {pokemonList.map((pokemon) => {
-        const { id, korean_name, img_url, description } = pokemon;
-        return (
-          <PokeCard key={id}>
-            <p>{korean_name}</p>
-            <img src={img_url}></img>
-            <p>{description}</p>
-            <CardBtn onClick={()=>addHandler(pokemon)}>추가</CardBtn>
-          </PokeCard>
-        );
-      })}
+      <PokeCard key={id}>
+        <p>{korean_name}</p>
+        <img src={img_url}></img>
+        {/* id값의 크기에 따라(id<10/id<100) NO.+${id} */}
+        <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
+        {/* <p>{description}</p> */}
+        {btnName === "추가" ? (
+          <CardBtn onClick={() => addHandler(pokemon)}>{btnName}</CardBtn>
+        ) : (
+          <CardBtn onClick={() => getOutMyPoke(pokemon)}>{btnName}</CardBtn>
+        )}
+      </PokeCard>
     </>
   );
 };
