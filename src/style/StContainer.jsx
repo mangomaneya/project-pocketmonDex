@@ -12,6 +12,7 @@ const StContainer = styled.div`
     width: 600px;
     margin-bottom: 20px;
   }
+  
 `;
 
 export default StContainer;

@@ -30,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
     }
     .app-container {
     width: 100%;
+    position: inherit;
   }
 `;
 
