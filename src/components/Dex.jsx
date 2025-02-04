@@ -17,17 +17,27 @@ const Dex = () => {
       }
     };
     fetchData();
+    console.log(
+      `포켓몬 리스트를 불러왔고 최초에만 렌더링 됩니다. 이 이후에는 렌더링 되지 않음`
+    );
   }, []);
 
   const [myPokeMons, setMyPokeMons] = useState([]);
   const addInMyPoke = (pokemon) => {
-    if (myPokeMons.length < 6) {
-      setMyPokeMons([...myPokeMons, pokemon]);
-    } else {
-      alert(`포켓몬은 6마리까지만 추가할 수 있습니다.`);
-      return;
+    const isContain = myPokeMons.some((myPokemon) => {
+      return myPokemon.id === pokemon.id;
+    });
+    if(isContain){
+      alert(`이미 선택된 포켓몬은 추가 할 수 없습니다.`)
+      return 
     }
-    console.log("myPokeMons =>", myPokeMons);
+    if(myPokeMons.length>6){
+      alert(`포켓몬은 최대 6마리만 선택할 수 있습니다.`)
+      return 
+    }
+
+    setMyPokeMons([...myPokeMons, pokemon])
+    // console.log(isContain);
   };
 
   return (
