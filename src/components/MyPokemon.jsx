@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const BallBox = styled.div`
   padding: 24px;
-  margin: 36px auto;
+  margin: 36px auto 24px auto;
   border: 2px dashed #c8c8c8;
   border-radius: 12px;
   background-color: white;
@@ -16,15 +16,17 @@ const BallBox = styled.div`
 const FlexRowDiv = styled.section`
   display: flex;
 `;
-const MyPokemon = () => {
+const MyPokemon = ({ myPokeList }) => {
+
   return (
     <FlexRowDiv>
-      <BallBox>
-        <img src="/src/assets/pokeball.png" alt="pokemon ball" />
-      </BallBox>
-      <BallBox>
-        <img src="/src/assets/pokeball.png" alt="pokemon ball" />
-      </BallBox>
+      {/* {myPokeList.length === 0
+        ? ballOfSix.map((index) => {
+            return <BallBox key={ballOfSix[index]}>포케볼</BallBox>;
+          })
+        : myPokeList.map((pokemon) => {
+            return <BallBox key={pokemon.id}>pokemon</BallBox>;
+          })} */}
       <BallBox>
         <img src="/src/assets/pokeball.png" alt="pokemon ball" />
       </BallBox>

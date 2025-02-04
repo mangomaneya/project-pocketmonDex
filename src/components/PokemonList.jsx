@@ -4,7 +4,7 @@ import PokemonCard from "./PokemonCard";
 const ListContainer = styled.div`
   background-color: #f9f9f9;
   padding: 24px 10px;
-  margin-bottom: 24px;
+  margin: 24px 0;
   position: relative;
   width: 100%;
   border-radius: 8px;
@@ -15,10 +15,13 @@ const ListContainer = styled.div`
   gap: 24px 0;
 `;
 
-const PokemonList = ({ pokemonList }) => {
+const PokemonList = ({ pokemonList, addInMyPoke }) => {
   return (
     <ListContainer>
-      <PokemonCard pokemonList={pokemonList}></PokemonCard>
+      <PokemonCard
+        pokemonList={pokemonList}
+        addInMyPoke={addInMyPoke}
+      ></PokemonCard>
     </ListContainer>
   );
 };
