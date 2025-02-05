@@ -23,6 +23,9 @@ export const PokeCard = styled.div`
   &:hover {
     transform: translateY(-5px);
   }
+  .hide {
+    display: none;
+  }
 `;
 export const CardBtn = styled(StButton)`
   width: fit-content;
@@ -41,29 +44,42 @@ const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
   const addHandler = (pokemon) => {
     addInMyPoke(pokemon);
   };
-  const { id, korean_name, img_url } = pokemon;
+  const { id, korean_name, img_url, description } = pokemon;
 
-  const getIdForLink = (e) => {
+  // const getIdForNavigate = (e) => {
+  //   if (e.target.tagName === "BUTTON") {
+  //     // console.log("클릭한 것은 ", e.target);
+  //     e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
+  //     return;
+  //   }
+  //   const thisCardId = e.target.closest("div").id;
+  //   navigateToDetail(thisCardId);
+  // };
+  const navigateToDetail = (e) => {
     if (e.target.tagName === "BUTTON") {
       // console.log("클릭한 것은 ", e.target);
       e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
       return;
     }
-    const thisCardId = e.target.closest("div").id;
-    linkToDetail(thisCardId);
-  };
-  const linkToDetail = (id) => {
-    navigate(`/details/${id}`, { state: { pokemon } });
+    // navigate(`/details/${id}`, { state: { pokemon } }); / 스테이트 사용 시 
+    navigate(
+      `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}`
+    );
+    //⛑️ 0. 라우터에 기존 디테일 페이지 경로를 쿼리스트링을 사용할 페이지 경로로 수정 (:id를 제거 )
+    //✅ 1. 온클릭이벤트를 "겟 아이디 포 네비게이트" 가 아니라 "네비게이트 투 디테일" 로 변경
+    //✅2. 이 때 넘겨주는 포케몬 데이터를 쿼리파라미터로 넘겨준다.
+    // 2-2. `/detail?id=${id}&name=${}`이런 식으로...
+    //
   };
 
   return (
     <>
-      <PokeCard key={id} onClick={getIdForLink} id={id}>
+      <PokeCard key={id} onClick={(event) => navigateToDetail(event)} id={id}>
         <p>{korean_name}</p>
         <img src={img_url}></img>
         {/* id값의 크기에 따라(id<10/id<100) NO.+${id} */}
         <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
-        {/* <p>{description}</p> */}
+        <p className="hide">{description}</p>
         {btnName === "추가" ? (
           <CardBtn onClick={() => addHandler(pokemon)}>{btnName}</CardBtn>
         ) : (
