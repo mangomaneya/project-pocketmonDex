@@ -42,17 +42,17 @@ const MyPokemon = ({ myPokeMons, getOutMyPoke }) => {
       {
         //ballOfSix 항목이 null이면 포켓볼을 렌더링 하고
         //ballOfSix 항목이 null이 아니면 카드를 렌더링한다.
-        ballOfSix.map((ball) => {
+        ballOfSix.map((ball, index) => {
           if (ball === null) {
             return (
-              <BallBox key={crypto.randomUUID()}>
+              <BallBox key={index}>
                 <img src="/src/assets/pokeball.png" alt="pokemon ball" />
               </BallBox>
             );
           }
           return (
             <PokemonCard
-              key={ball.id}
+              key={ball.id + ball.korean_name}
               pokemon={ball}
               getOutMyPoke={getOutMyPoke}
               btnName="삭제"

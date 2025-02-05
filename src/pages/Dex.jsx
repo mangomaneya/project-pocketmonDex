@@ -23,13 +23,11 @@ const Dex = () => {
       alert(`이미 선택된 포켓몬은 추가 할 수 없습니다.`);
       return;
     }
-    // console.log("myPokeMons in Dex =>", myPokeMons);
     setMyPokeMons((prev) => [...prev, pokemon]);
-    // console.log(isContain);
+    console.log("myPokeMons", myPokeMons);
   };
 
   const getOutMyPoke = (pokemon) => {
-    // const inMyPokeIds = myPokeMons.map((pokemon)=> pokemon.id)
     const removedMyPokeMons = myPokeMons.filter((myPokemon) => {
       if (myPokemon.id !== pokemon.id) {
         return pokemon;
