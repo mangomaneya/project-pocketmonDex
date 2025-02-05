@@ -21,8 +21,13 @@ const Dex = () => {
       `포켓몬 리스트를 불러왔고 최초에만 렌더링 됩니다. 이 이후에는 렌더링 되지 않음`
     );
   }, []);
-
-  const [myPokeMons, setMyPokeMons] = useState([]);
+  // console.log(JSON.parse(localStorage.getItem("myPokemons")));
+  const [myPokeMons, setMyPokeMons] = useState(
+    JSON.parse(localStorage.getItem("myPokemons")) || []
+  );
+  useEffect(() => {
+    localStorage.setItem("myPokemons", JSON.stringify(myPokeMons));
+  }, [myPokeMons]);
 
   const addInMyPoke = (pokemon) => {
     const isContain = myPokeMons.some((myPokemon) => {
