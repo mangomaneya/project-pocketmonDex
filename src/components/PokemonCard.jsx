@@ -65,7 +65,7 @@ const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
     navigate(
       `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}`
     );
-    //⛑️ 0. 라우터에 기존 디테일 페이지 경로를 쿼리스트링을 사용할 페이지 경로로 수정 (:id를 제거 )
+
     //✅ 1. 온클릭이벤트를 "겟 아이디 포 네비게이트" 가 아니라 "네비게이트 투 디테일" 로 변경
     //✅2. 이 때 넘겨주는 포케몬 데이터를 쿼리파라미터로 넘겨준다.
     // 2-2. `/detail?id=${id}&name=${}`이런 식으로...
