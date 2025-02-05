@@ -4,7 +4,7 @@ import PokemonList from "../components/PokemonList";
 import supabase from "../../supabaseClient";
 
 const Dex = () => {
-  const [pokemon, setPokemon] = useState([]);
+  const [allPokemon, setAllPokemon] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const { data, error } = await supabase
@@ -13,7 +13,7 @@ const Dex = () => {
       if (error) {
         console.log("error =>", error);
       } else {
-        setPokemon(data);
+        setAllPokemon(data);
       }
     };
     fetchData();
@@ -55,7 +55,7 @@ const Dex = () => {
   return (
     <>
       <Dashboard myPokeMons={myPokeMons} getOutMyPoke={getOutMyPoke} />
-      <PokemonList pokemonList={pokemon} addInMyPoke={addInMyPoke} />
+      <PokemonList allPokemon={allPokemon} addInMyPoke={addInMyPoke} />
     </>
   );
 };

@@ -15,10 +15,10 @@ const ListContainer = styled.div`
   gap: 24px 0;
 `;
 
-const PokemonList = ({ pokemonList, addInMyPoke }) => {
+const PokemonList = ({ allPokemon, addInMyPoke }) => {
   return (
     <ListContainer>
-      {pokemonList.map((pokemon) => {
+      {allPokemon.map((pokemon) => {
         return (
           <PokemonCard
             key={pokemon.id}
