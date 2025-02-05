@@ -1,6 +1,17 @@
 import styled from "styled-components";
 import MyPokemon from "./MyPokemon";
 
+const Dashboard = () => {
+  return (
+    <DexContainer>
+      <Title>나만의 포켓몬</Title>
+      <MyPokemon></MyPokemon>
+    </DexContainer>
+  );
+};
+
+export default Dashboard;
+
 const Title = styled.h1`
   font-size: 1.5em;
   font-weight: 900;
@@ -14,19 +25,4 @@ const DexContainer = styled.div`
   position: relative;
   width: 100%;
   border-radius: 8px;
-
 `;
-const Dashboard = ({ myPokeMons, getOutMyPoke }) => {
-  
-  return (
-    <DexContainer>
-      <Title>나만의 포켓몬</Title>
-      <MyPokemon
-        myPokeMons={myPokeMons}
-        getOutMyPoke={getOutMyPoke}
-      ></MyPokemon>
-    </DexContainer>
-  );
-};
-
-export default Dashboard;
