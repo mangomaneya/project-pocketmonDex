@@ -40,10 +40,6 @@ export const CardBtn = styled(StButton)`
 const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
   const navigate = useNavigate();
 
-  // console.log("addInMyPoke =>", addInMyPoke);
-  const addHandler = (pokemon) => {
-    addInMyPoke(pokemon);
-  };
   const { id, korean_name, img_url, description } = pokemon;
 
   // const getIdForNavigate = (e) => {
@@ -61,7 +57,7 @@ const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
       e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
       return;
     }
-    // navigate(`/details/${id}`, { state: { pokemon } }); / 스테이트 사용 시 
+    // navigate(`/details/${id}`, { state: { pokemon } }); / 스테이트 사용 시
     navigate(
       `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}`
     );
@@ -81,7 +77,7 @@ const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
         <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
         <p className="hide">{description}</p>
         {btnName === "추가" ? (
-          <CardBtn onClick={() => addHandler(pokemon)}>{btnName}</CardBtn>
+          <CardBtn onClick={() => addInMyPoke(pokemon)}>{btnName}</CardBtn>
         ) : (
           <CardBtn onClick={() => getOutMyPoke(pokemon)}>{btnName}</CardBtn>
         )}
