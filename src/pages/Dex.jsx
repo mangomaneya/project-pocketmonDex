@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
+import { NUMBER_SIX } from "../constant/constant";
 
 const Dex = () => {
   const [myPokeMons, setMyPokeMons] = useState(
@@ -14,7 +15,7 @@ const Dex = () => {
     const isContain = myPokeMons.some((myPokemon) => {
       return myPokemon.id === pokemon.id;
     });
-    if (myPokeMons.length >= 6) {
+    if (myPokeMons.length >= NUMBER_SIX) {
       alert(`포켓몬은 최대 6마리만 선택할 수 있습니다.`);
       return;
     }

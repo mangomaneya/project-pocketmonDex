@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import { useMemo } from "react";
+import { NUMBER_SIX } from "../constant/constant";
 
 const BallBox = styled.div`
   padding: 24px;
@@ -29,7 +30,7 @@ const MyPokemon = ({ myPokeMons, getOutMyPoke }) => {
   // gpt 도움 받음
   // useMemo를 사용하여 ballOfSix 배열을 캐싱
   const ballOfSix = useMemo(() => {
-    const tempBall = new Array(6).fill(null); // 6개 슬롯 초기화
+    const tempBall = new Array(NUMBER_SIX).fill(null); // 6개 슬롯 초기화
     myPokeMons.forEach((pokemon, index) => {
       tempBall[index] = pokemon; // 앞에서부터 채우기
     });
