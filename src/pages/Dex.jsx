@@ -43,6 +43,6 @@ const Dex = () => {
       <PokemonList addInMyPoke={addInMyPoke} />
     </>
   );
-};
+}; 
 
 export default Dex;
