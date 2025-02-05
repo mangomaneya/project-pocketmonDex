@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import Dashboard from "../components/Dashboard";
 import PokemonList from "../components/PokemonList";
-import {supabase as Base } from "../../supabaseClient";
+import supabase from "../../supabaseClient";
 
 const Dex = () => {
   const [pokemon, setPokemon] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await Base
+      const { data, error } = await supabase
         .from("POKEMON_MOCKDATA")
         .select("*");
       if (error) {
