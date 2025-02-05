@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import Dashboard from "./Dashboard";
-import PokemonList from "./PokemonList";
-import supabase from "../../supabaseClient";
+import Dashboard from "../components/Dashboard";
+import PokemonList from "../components/PokemonList";
+import {supabase as Base } from "../../supabaseClient";
 
 const Dex = () => {
   const [pokemon, setPokemon] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await supabase
+      const { data, error } = await Base
         .from("POKEMON_MOCKDATA")
         .select("*");
       if (error) {
@@ -23,6 +23,7 @@ const Dex = () => {
   }, []);
 
   const [myPokeMons, setMyPokeMons] = useState([]);
+
   const addInMyPoke = (pokemon) => {
     const isContain = myPokeMons.some((myPokemon) => {
       return myPokemon.id === pokemon.id;
@@ -36,18 +37,19 @@ const Dex = () => {
       return;
     }
     // console.log("myPokeMons in Dex =>", myPokeMons);
-    setMyPokeMons([...myPokeMons, pokemon]);
+    setMyPokeMons((prev) => [...prev, pokemon]);
     // console.log(isContain);
   };
 
   const getOutMyPoke = (pokemon) => {
     // const inMyPokeIds = myPokeMons.map((pokemon)=> pokemon.id)
-    const removedMyPokemons = myPokeMons.filter((myPokemon) => {
+    const removedMyPokeMons = myPokeMons.filter((myPokemon) => {
       if (myPokemon.id !== pokemon.id) {
         return pokemon;
       }
     });
-    setMyPokeMons(removedMyPokemons);
+    setMyPokeMons(removedMyPokeMons);
+    console.log("myPokeMons", myPokeMons);
   };
 
   return (

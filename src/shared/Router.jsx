@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "../components/Home";
-import Dex from "../components/Dex";
-import Details from "../components/Details";
+import Home from "../pages/Home";
+import Dex from "../pages/Dex";
+import Details from "../pages/Details";
 
 const Router = () => {
   return (

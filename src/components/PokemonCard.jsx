@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import StButton from "../style/StButton";
+import { useNavigate } from "react-router-dom";
 
 export const PokeCard = styled.div`
   color: black;
@@ -34,15 +35,30 @@ export const CardBtn = styled(StButton)`
 `;
 
 const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
+  const navigate = useNavigate();
+
   // console.log("addInMyPoke =>", addInMyPoke);
   const addHandler = (pokemon) => {
     addInMyPoke(pokemon);
   };
   const { id, korean_name, img_url } = pokemon;
 
+  const getIdForLink = (e) => {
+    if (e.target.tagName === "BUTTON") {
+      // console.log("클릭한 것은 ", e.target);
+      e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
+      return;
+    }
+    const thisCardId = e.target.closest("div").id;
+    linkToDetail(thisCardId);
+  };
+  const linkToDetail = (id) => {
+    navigate(`/details/${id}`, { state: { pokemon } });
+  };
+
   return (
     <>
-      <PokeCard key={id}>
+      <PokeCard key={id} onClick={getIdForLink} id={id}>
         <p>{korean_name}</p>
         <img src={img_url}></img>
         {/* id값의 크기에 따라(id<10/id<100) NO.+${id} */}

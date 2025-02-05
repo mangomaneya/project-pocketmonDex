@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import PokemonCard, { CardBtn, PokeCard } from "./PokemonCard";
+import PokemonCard from "./PokemonCard";
 import { useMemo } from "react";
 
 const BallBox = styled.div`
