@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import { useMemo } from "react";
+import { NUMBER_SIX } from "../constant/constant";
 
 const BallBox = styled.div`
   padding: 24px;
@@ -29,7 +30,7 @@ const MyPokemon = ({ myPokeMons, getOutMyPoke }) => {
   // gpt 도움 받음
   // useMemo를 사용하여 ballOfSix 배열을 캐싱
   const ballOfSix = useMemo(() => {
-    const tempBall = new Array(6).fill(null); // 6개 슬롯 초기화
+    const tempBall = new Array(NUMBER_SIX).fill(null); // 6개 슬롯 초기화
     myPokeMons.forEach((pokemon, index) => {
       tempBall[index] = pokemon; // 앞에서부터 채우기
     });
@@ -41,17 +42,17 @@ const MyPokemon = ({ myPokeMons, getOutMyPoke }) => {
       {
         //ballOfSix 항목이 null이면 포켓볼을 렌더링 하고
         //ballOfSix 항목이 null이 아니면 카드를 렌더링한다.
-        ballOfSix.map((ball) => {
+        ballOfSix.map((ball, index) => {
           if (ball === null) {
             return (
-              <BallBox key={crypto.randomUUID()}>
+              <BallBox key={index}>
                 <img src="/src/assets/pokeball.png" alt="pokemon ball" />
               </BallBox>
             );
           }
           return (
             <PokemonCard
-              key={ball.id}
+              key={ball.id + ball.korean_name}
               pokemon={ball}
               getOutMyPoke={getOutMyPoke}
               btnName="삭제"

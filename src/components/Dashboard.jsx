@@ -17,6 +17,7 @@ const DexContainer = styled.div`
 
 `;
 const Dashboard = ({ myPokeMons, getOutMyPoke }) => {
+  
   return (
     <DexContainer>
       <Title>나만의 포켓몬</Title>

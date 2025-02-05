@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
+import { useEffect, useState } from "react";
+import supabase from "../../supabaseClient";
 
 const ListContainer = styled.div`
   background-color: #f9f9f9;
@@ -15,10 +17,27 @@ const ListContainer = styled.div`
   gap: 24px 0;
 `;
 
-const PokemonList = ({ pokemonList, addInMyPoke }) => {
+const PokemonList = ({ addInMyPoke }) => {
+  const [allPokemon, setAllPokemon] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await supabase
+        .from("POKEMON_MOCKDATA")
+        .select("*");
+      if (error) {
+        console.log("error =>", error);
+      } else {
+        setAllPokemon(data);
+      }
+    };
+    fetchData();
+    console.log(
+      `포켓몬 리스트를 불러왔고 최초에만 렌더링 됩니다. 이 이후에는 렌더링 되지 않음`
+    );
+  }, []);
   return (
     <ListContainer>
-      {pokemonList.map((pokemon) => {
+      {allPokemon.map((pokemon) => {
         return (
           <PokemonCard
             key={pokemon.id}
