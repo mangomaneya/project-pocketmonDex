@@ -1,8 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import  { CardBtn } from "../components/PokemonCard";
+import { CardBtn } from "../components/PokemonCard";
 import styled from "styled-components";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addInMyPoke, getOutMyPoke } from "../redux/pokemonSlice";
+import MOCK_DATA from "../constant/constant";
 
 const Details = () => {
   const dispatch = useDispatch();
@@ -12,8 +13,15 @@ const Details = () => {
   const queryParams = new URLSearchParams(location.search);
   // 변수에 쿼리 파라미터 할당
   const id = queryParams.get("id");
-  const { pokemon } = location.state || {};
+
+  const pokemon = MOCK_DATA.find((data) => {
+    if (data.id === +id) {
+      return data;
+    }
+  });
+  console.log("pokemon", pokemon);
   const { korean_name, img_url, description, types } = pokemon;
+
   //해당페이지 포켓몬이 마이포켓몬에 포함되어있는지 체크
   const myPokemons = useSelector((state) => state.myPokemonList.myPokemons);
   // console.log('myPokemons', myPokemons)

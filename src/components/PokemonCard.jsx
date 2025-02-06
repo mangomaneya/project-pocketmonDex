@@ -19,9 +19,7 @@ const PokemonCard = ({ pokemon, btnName }) => {
       return;
     }
     navigate(
-      `/details/pokemon?id=${id}`,
-      { state: { pokemon } } //포켓몬 스테이트 전달
-    );
+      `/details/pokemon?id=${id}`);
   };
 
   return (

@@ -1,31 +1,15 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
-import { useEffect, useState } from "react";
-import supabase from "../../supabaseClient";
+import MOCK_DATA from "../constant/constant";
 
-const PokemonList = ({ addInMyPoke }) => {
-  const [allPokemon, setAllPokemon] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data, error } = await supabase
-        .from("POKEMON_MOCKDATA")
-        .select("*");
-      if (error) {
-        console.log("error =>", error);
-      } else {
-        setAllPokemon(data);
-      }
-    };
-    fetchData();
-  }, []);
+const PokemonList = () => {
   return (
     <ListContainer>
-      {allPokemon.map((pokemon) => {
+      {MOCK_DATA.map((pokemon) => {
         return (
           <PokemonCard
             key={pokemon.id}
             pokemon={pokemon}
-            addInMyPoke={addInMyPoke}
             btnName="추가"
           ></PokemonCard>
         );
