@@ -1,39 +1,41 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
-import { useMemo } from "react";
+// import { useMemo } from "react";
 import { NUMBER_SIX } from "../constant/constant";
 import { useSelector } from "react-redux";
+import { useMemo } from "react";
 
 const MyPokemon = () => {
   const myPokeMons = useSelector((state) => {
-    return state.myPokemonList.myPokemons || [];
+    return state.myPokemonList.myPokemons;
   });
 
+  // 6개의 포켓볼을 만든다,
+  // 6개의 포켓볼은 마이포켓몬의 길이가 늘어날 때 마다, 1개씩 줄어든다.
+
   const ballOfSix = useMemo(() => {
-    // 함수 메모이제이션
     const tempBall = new Array(NUMBER_SIX).fill(null); //빈배열 6개 생성
-    myPokeMons.forEach((pokemon, index) => {
-      tempBall[index] = pokemon; // 앞에서부터 채우기
-    });
+    tempBall.length -= myPokeMons.length;
+    console.log("tempBall", tempBall);
     return tempBall;
-  }, [myPokeMons]); // myPokeMons가 변경될 때만 다시 계산
+  }, [myPokeMons]);
 
   return (
     <FlexRowDiv>
-      {ballOfSix.map((ball, index) => {
-        if (ball === null) {
-          return (
-            <BallBox key={index}>
-              <img src="/src/assets/pokeball.png" alt="pokemon ball" />
-            </BallBox>
-          );
-        }
+      {myPokeMons.map((pokemons) => {
         return (
           <PokemonCard
-            key={ball.id + ball.korean_name}
-            pokemon={ball}
+            key={pokemons.id + pokemons.korean_name}
+            pokemon={pokemons}
             btnName="삭제"
           />
+        );
+      })}
+      {ballOfSix.map((ball, index) => {
+        return (
+          <BallBox key={index}>
+            <img src="/src/assets/pokeball.png" alt="pokemon ball" />
+          </BallBox>
         );
       })}
     </FlexRowDiv>
