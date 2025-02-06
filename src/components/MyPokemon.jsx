@@ -6,10 +6,8 @@ import { useSelector } from "react-redux";
 
 const MyPokemon = () => {
   const myPokeMons = useSelector((state) => {
-    console.log("state", state.myPokemonList.myPokemons);
     return state.myPokemonList.myPokemons || [];
   });
-  console.log("myPokeMons", myPokeMons);
 
   const ballOfSix = useMemo(() => {
     // 함수 메모이제이션
