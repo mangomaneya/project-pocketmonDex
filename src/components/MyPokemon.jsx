@@ -2,17 +2,15 @@ import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import { useMemo } from "react";
 import { NUMBER_SIX } from "../constant/constant";
-// import { PokemonContext } from "../context/pokemonContext";
 import { useSelector } from "react-redux";
 
 const MyPokemon = () => {
   const myPokeMons = useSelector((state) => {
-    console.log("state", state.myPokemonList.myPokeMons);
-    return state.myPokemonList.myPokemons;
+    console.log("state", state.myPokemonList.myPokemons);
+    return state.myPokemonList.myPokemons || [];
   });
   console.log("myPokeMons", myPokeMons);
-  //대시보드에 포켓볼 6개에 마이포켓몬을 담을 수 있게 동작
-  //마이포켓몬에 포켓몬이 추가 될 때마다 길이가 6인 배열에 추가됨
+
   const ballOfSix = useMemo(() => {
     // 함수 메모이제이션
     const tempBall = new Array(NUMBER_SIX).fill(null); //빈배열 6개 생성
@@ -24,26 +22,22 @@ const MyPokemon = () => {
 
   return (
     <FlexRowDiv>
-      {
-        //ballOfSix 항목이 null이면 포켓볼을 렌더링 하고
-        //ballOfSix 항목이 null이 아니면 포켓몬 카드를 렌더링한다.
-        ballOfSix.map((ball, index) => {
-          if (ball === null) {
-            return (
-              <BallBox key={index}>
-                <img src="/src/assets/pokeball.png" alt="pokemon ball" />
-              </BallBox>
-            );
-          }
+      {ballOfSix.map((ball, index) => {
+        if (ball === null) {
           return (
-            <PokemonCard
-              key={ball.id + ball.korean_name}
-              pokemon={ball}
-              btnName="삭제"
-            />
+            <BallBox key={index}>
+              <img src="/src/assets/pokeball.png" alt="pokemon ball" />
+            </BallBox>
           );
-        })
-      }
+        }
+        return (
+          <PokemonCard
+            key={ball.id + ball.korean_name}
+            pokemon={ball}
+            btnName="삭제"
+          />
+        );
+      })}
     </FlexRowDiv>
   );
 };
@@ -71,5 +65,7 @@ const BallBox = styled.div`
 `;
 const FlexRowDiv = styled.section`
   display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
   margin-top: 36px;
 `;

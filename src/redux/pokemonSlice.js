@@ -15,20 +15,18 @@ const pokemonSlice = createSlice({
         return;
       }
       const isContain = state.myPokemons.some((myPokemon) => {
-        // console.log("action.payload", action.payload);
         return myPokemon.id === action.payload.id;
       });
       if (isContain) {
         alert(`이미 선택된 포켓몬은 추가 할 수 없습니다.`);
         return;
       }
+
       state.myPokemons.push(action.payload);
       localStorage.setItem("myPokemons", JSON.stringify(state.myPokemons));
     },
     getOutMyPoke: (state, action) => {
-      console.log("state.myPokemons", state.myPokemons);
-
-      const removedMyPokeMons = state.myPokeMons.filter((myPokemon) => {
+      const removedMyPokeMons = state.myPokemons.filter((myPokemon) => {
         if (myPokemon.id !== action.payload.id) {
           return action.payload;
         }

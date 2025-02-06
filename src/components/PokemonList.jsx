@@ -17,9 +17,6 @@ const PokemonList = ({ addInMyPoke }) => {
       }
     };
     fetchData();
-    console.log(
-      `포켓몬 리스트를 불러왔고 최초에만 렌더링 됩니다. 이 이후에는 렌더링 되지 않음`
-    );
   }, []);
   return (
     <ListContainer>
@@ -49,6 +46,5 @@ const ListContainer = styled.div`
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
   gap: 24px 0;
 `;
