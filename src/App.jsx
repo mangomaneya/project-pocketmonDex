@@ -34,4 +34,5 @@ function App() {
 export default App;
 const StyledToastContainer = styled(ToastContainer)`
   --toastify-toast-width: 420px;
+  --toastify-font-family: "Galmuri7";
 `

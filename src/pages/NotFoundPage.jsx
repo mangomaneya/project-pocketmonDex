@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import StButton from "../style/StButton";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();

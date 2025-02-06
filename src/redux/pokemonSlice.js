@@ -12,7 +12,7 @@ const pokemonSlice = createSlice({
   reducers: {
     addInMyPoke: (state, action) => {
       if (state.myPokemons.length >= NUMBER_SIX) {
-        toast.error(`포켓몬은 최대 6마리만 선택할 수 있습니다.`)
+        toast.error(`포켓몬은 최대 6마리만 선택할 수 있습니다.`);
         return;
       }
       const isContain = state.myPokemons.some((myPokemon) => {
@@ -24,7 +24,7 @@ const pokemonSlice = createSlice({
       }
 
       state.myPokemons.push(action.payload);
-      toast.success(`${action.payload.korean_name}가(이) 나만의 포켓몬에 추가되었습니다.`)
+      toast.success(`${action.payload.korean_name}, 넌 내거야!`);
       localStorage.setItem("myPokemons", JSON.stringify(state.myPokemons));
     },
     getOutMyPoke: (state, action) => {
@@ -34,7 +34,7 @@ const pokemonSlice = createSlice({
         }
       });
       state.myPokemons = removedMyPokeMons;
-      toast.info(`${action.payload.korean_name}가(이) 나만의 포켓몬에서 삭제되었습니다.`)
+      toast.info(`가라, ${action.payload.korean_name}! 몸통박치기!!`);
     },
   },
 });

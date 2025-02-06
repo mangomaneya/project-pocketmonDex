@@ -9,7 +9,10 @@ const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     color-scheme: light dark;
     color: #ffffffde;
-    background-color: #ffe4b8;
+    /* background-color: #ffe4b8; */
+    background-image: url("https://pokemonkorea.co.kr/img/news/nnews_nav_bg.jpg");
+    background-repeat: repeat;
+
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -27,6 +30,7 @@ const GlobalStyles = createGlobalStyle`
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
+    
     }
     .app-container {
     width: 100%;

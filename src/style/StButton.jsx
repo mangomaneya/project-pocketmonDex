@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const StButton = styled.button`
+font-family: "Galmuri7";
   padding: 10px 20px;
   font-size: 18px;
   cursor: pointer;

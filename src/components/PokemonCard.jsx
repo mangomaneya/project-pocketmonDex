@@ -26,7 +26,7 @@ const PokemonCard = ({ pokemon, btnName }) => {
       <PokeCard key={id} onClick={(event) => navigateToDetail(event)} id={id}>
         <p>{korean_name}</p>
         <img src={img_url}></img>
-        <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
+        <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.${id}`}</p>
         <p className="hide">{description}</p>
         {/* 버튼명에 따라 온클릭 이벤트 구분 */}
         {btnName === "추가" ? (
@@ -72,7 +72,7 @@ export const PokeCard = styled.div`
   }
 `;
 export const CardBtn = styled(StButton)`
-  font-family: "Galmuri7";
+  
   width: fit-content;
   padding: 10px 18px;
   font-size: 18px;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import PokemonCard from "./PokemonCard";
 import MOCK_DATA from "../constant/constant";
+import { DexContainer } from "./Dashboard";
 
 const PokemonList = () => {
   return (
@@ -20,14 +21,8 @@ const PokemonList = () => {
 
 export default PokemonList;
 
-const ListContainer = styled.div`
-  background-color: #f9f9f9;
-  padding: 24px 10px;
-  margin: 24px 0;
-  position: relative;
-  width: 100%;
-  border-radius: 8px;
-
+const ListContainer = styled(DexContainer)`
+  
   display: flex;
   flex-wrap: wrap;
   gap: 24px 0;

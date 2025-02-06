@@ -19,7 +19,7 @@ const Details = () => {
       return data;
     }
   });
-  console.log("pokemon", pokemon);
+  // console.log("pokemon", pokemon);
   const { korean_name, img_url, description, types } = pokemon;
 
   //해당페이지 포켓몬이 마이포켓몬에 포함되어있는지 체크
@@ -44,10 +44,10 @@ const Details = () => {
             ? `No.00${id - 1}`
             : id < 100
             ? `No.0${id - 1}`
-            : `N.0${id - 1}`}
+            : `N.${id - 1}`}
         </p>
         <p className="present">
-          {id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}
+          {id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.${id}`}
         </p>
         <p
           className="after"
@@ -57,7 +57,7 @@ const Details = () => {
             ? `No.00${id + 1}`
             : id < 100
             ? `No.0${id + 1}`
-            : `N.0${id + 1}`}
+            : `N.${id + 1}`}
           &#8594;
         </p>
       </div>
@@ -111,6 +111,11 @@ const StDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-image: url("https://pokemonkorea.co.kr/img/bg_pattern.jpg");
+  background-repeat: repeat;
+  border-radius: 12px;
+  padding: 48px 0;
   h1 {
     font-size: 2em;
     margin-bottom: 24px;
@@ -138,6 +143,12 @@ const StDiv = styled.div`
   .after {
     color: #b9b9b9;
     cursor: pointer;
+    transition: all ease-in-out 0.2s;
+
+    &:hover {
+      transform: translateY(-1.5px);
+      text-decoration: underline 2px;
+    }
   }
 `;
 const StyledRound = styled.div`
