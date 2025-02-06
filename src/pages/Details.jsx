@@ -1,12 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useContext } from "react";
 import { CardBtn } from "../components/PokemonCard";
 import styled from "styled-components";
-import { PokemonContext } from "../context/pokemonContext";
+import { useDispatch } from "react-redux";
+import { addInMyPoke } from "../redux/pokemonSlice";
 
 const Details = () => {
-  //콘텍스트 호출
-  const { addInMyPoke } = useContext(PokemonContext);
+  const dispatch = useDispatch();
   //쿼리 파라미터 불러오기
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,7 +35,7 @@ const Details = () => {
       >
         뒤로가기
       </CardBtn>
-      <CardBtn onClick={() => addInMyPoke(pokemon)}>추가하기</CardBtn>
+      <CardBtn onClick={() => dispatch(addInMyPoke(pokemon))}>추가하기</CardBtn>
     </StDiv>
   );
 };

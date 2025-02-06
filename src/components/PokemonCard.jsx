@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import StButton from "../style/StButton";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { PokemonContext } from "../context/pokemonContext";
+import { useDispatch } from "react-redux";
+import { addInMyPoke, getOutMyPoke } from "../redux/pokemonSlice";
 
 const PokemonCard = ({ pokemon, btnName }) => {
-  //콘텍스트 호출
-  const { addInMyPoke, getOutMyPoke } = useContext(PokemonContext);
+  const dispatch = useDispatch();
+
   //prop으로 받은 포켓몬 구조분해할당
   const { id, korean_name, img_url, description, types } = pokemon;
   //디테일페이지 이동 구현
@@ -32,9 +32,13 @@ const PokemonCard = ({ pokemon, btnName }) => {
         <p className="hide">{description}</p>
         {/* 버튼명에 따라 온클릭 이벤트 구분 */}
         {btnName === "추가" ? (
-          <CardBtn onClick={() => addInMyPoke(pokemon)}>{btnName}</CardBtn>
+          <CardBtn onClick={() => dispatch(addInMyPoke(pokemon))}>
+            {btnName}
+          </CardBtn>
         ) : (
-          <CardBtn onClick={() => getOutMyPoke(pokemon)}>{btnName}</CardBtn>
+          <CardBtn onClick={() => dispatch(getOutMyPoke(pokemon))}>
+            {btnName}
+          </CardBtn>
         )}
       </PokeCard>
     </>
