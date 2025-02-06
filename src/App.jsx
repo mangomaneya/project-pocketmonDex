@@ -2,8 +2,7 @@ import { Provider } from "react-redux";
 import Router from "./shared/Router";
 import GlobalStyles from "./style/GlobalStyles";
 import { store } from "./redux/store";
-import { ToastContainer } from "react-toastify";
-import { Flip } from "react-toastify";
+import { ToastContainer, Flip } from "react-toastify";
 
 function App() {
   return (

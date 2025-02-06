@@ -16,7 +16,6 @@ const MyPokemon = () => {
   const ballOfSix = useMemo(() => {
     const tempBall = new Array(NUMBER_SIX).fill(null); //빈배열 6개 생성
     tempBall.length -= myPokeMons.length;
-    console.log("tempBall", tempBall);
     return tempBall;
   }, [myPokeMons]);
 
@@ -63,9 +62,9 @@ const BallBox = styled.div`
     height: 88px;
   }
 `;
-const FlexRowDiv = styled.section`
+const FlexRowDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  gap: 24px 0;
   margin-top: 36px;
 `;

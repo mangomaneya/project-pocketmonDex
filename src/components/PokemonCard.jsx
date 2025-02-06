@@ -9,7 +9,7 @@ const PokemonCard = ({ pokemon, btnName }) => {
   const dispatch = useDispatch();
 
   //prop으로 받은 포켓몬 구조분해할당
-  const { id, korean_name, img_url, description, types } = pokemon;
+  const { id, korean_name, img_url, description } = pokemon;
   //디테일페이지 이동 구현
   const navigate = useNavigate();
   const navigateToDetail = (e) => {
@@ -77,6 +77,7 @@ export const CardBtn = styled(StButton)`
   width: fit-content;
   padding: 10px 18px;
   font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
   background-color: rgb(255, 0, 0);
