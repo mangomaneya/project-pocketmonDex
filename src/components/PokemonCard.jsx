@@ -7,7 +7,7 @@ import { addInMyPoke, getOutMyPoke } from "../redux/pokemonSlice";
 
 const PokemonCard = ({ pokemon, btnName }) => {
   const dispatch = useDispatch();
- 
+
   //prop으로 받은 포켓몬 구조분해할당
   const { id, korean_name, img_url, description, types } = pokemon;
   //디테일페이지 이동 구현
@@ -19,7 +19,7 @@ const PokemonCard = ({ pokemon, btnName }) => {
       return;
     }
     navigate(
-      `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}&types=${types}`,
+      `/details/pokemon?id=${id}`,
       { state: { pokemon } } //포켓몬 스테이트 전달
     );
   };
