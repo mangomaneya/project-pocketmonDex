@@ -34,7 +34,7 @@ const PokemonCard = ({ pokemon, btnName }) => {
             {btnName}
           </CardBtn>
         ) : (
-          <CardBtn onClick={() => dispatch(getOutMyPoke(pokemon))}>
+          <CardBtn onClick={() => dispatch(getOutMyPoke(pokemon))} $checked>
             {btnName}
           </CardBtn>
         )}
@@ -64,7 +64,8 @@ export const PokeCard = styled.div`
   transition: all ease-in-out 0.2s;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
   }
   .hide {
     display: none;
@@ -78,6 +79,6 @@ export const CardBtn = styled(StButton)`
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
-  background-color: rgb(255, 0, 0);
+  
   color: #ffffff;
 `;

@@ -45,7 +45,7 @@ const Details = () => {
           뒤로가기
         </CardBtn>
         {isContain ? (
-          <CardBtn onClick={() => dispatch(getOutMyPoke(pokemon))}>
+          <CardBtn onClick={() => dispatch(getOutMyPoke(pokemon))} $checked>
             삭제하기
           </CardBtn>
         ) : (
@@ -61,12 +61,7 @@ const Details = () => {
               {/* {pokemon.korean_name} */}
               <img
                 src={pokemon.img_url}
-                onClick={() =>
-                  navigate(
-                    `/details/pokemon?id=${pokemon.id}`,
-                    { state: { pokemon } } //포켓몬 스테이트 전달
-                  )
-                }
+                onClick={() => navigate(`/details/pokemon?id=${pokemon.id}`)}
               ></img>
             </div>
           );
