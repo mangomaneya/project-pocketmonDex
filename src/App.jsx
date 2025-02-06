@@ -5,13 +5,14 @@ import { store } from "./redux/store";
 import { ToastContainer, Flip } from "react-toastify";
 import "galmuri/dist/galmuri.css";
 import './App.css'
+import styled from "styled-components";
 
 function App() {
   return (
     <Provider store={store}>
       <GlobalStyles />
       <div className="app-container">
-        <ToastContainer
+        <StyledToastContainer
           position="top-center"
           autoClose={2500}
           hideProgressBar={false}
@@ -31,3 +32,6 @@ function App() {
 }
 
 export default App;
+const StyledToastContainer = styled(ToastContainer)`
+  --toastify-toast-width: 420px;
+`

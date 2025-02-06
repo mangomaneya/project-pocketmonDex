@@ -12,10 +12,10 @@ const Details = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   // 변수에 쿼리 파라미터 할당
-  const id = queryParams.get("id");
+  const id = Number(queryParams.get("id"));
 
   const pokemon = MOCK_DATA.find((data) => {
-    if (data.id === +id) {
+    if (data.id === id) {
       return data;
     }
   });
@@ -31,10 +31,43 @@ const Details = () => {
 
   return (
     <StDiv>
-      <p>{korean_name}</p>
+      <h1>{korean_name}</h1>
       <img src={img_url} />
-      <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
-      <p>{types}</p>
+      <div className="id-container">
+        <p
+          className="before"
+          onClick={() => navigate(`/details/pokemon?id=${pokemon.id - 1}`)}
+        >
+          {" "}
+          &#8592;
+          {id < 10
+            ? `No.00${id - 1}`
+            : id < 100
+            ? `No.0${id - 1}`
+            : `N.0${id - 1}`}
+        </p>
+        <p className="present">
+          {id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}
+        </p>
+        <p
+          className="after"
+          onClick={() => navigate(`/details/pokemon?id=${pokemon.id + 1}`)}
+        >
+          {id < 10
+            ? `No.00${id + 1}`
+            : id < 100
+            ? `No.0${id + 1}`
+            : `N.0${id + 1}`}
+          &#8594;
+        </p>
+      </div>
+      <p>
+        {types
+          .map((type) => {
+            return type;
+          })
+          .join(", ")}
+      </p>
       <p>{description}</p>
       <div>
         <CardBtn
@@ -78,8 +111,14 @@ const StDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  h1 {
+    font-size: 2em;
+    margin-bottom: 24px;
+  }
   p {
     margin: 18px;
+    font-weight: bold;
+    font-size: 1.2em;
   }
   button {
     margin: 12px;
@@ -87,11 +126,26 @@ const StDiv = styled.div`
   img {
     width: 180px;
   }
+  .id-container {
+    display: flex;
+    gap: 100px;
+    align-items: flex-end;
+  }
+  .present {
+    font-size: 1.5em;
+  }
+  .before,
+  .after {
+    color: #b9b9b9;
+    cursor: pointer;
+  }
 `;
 const StyledRound = styled.div`
   display: flex;
   gap: 36px;
   margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
   .ball {
     border-radius: 50%;
     width: 120px;
