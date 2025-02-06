@@ -3,6 +3,8 @@ import Router from "./shared/Router";
 import GlobalStyles from "./style/GlobalStyles";
 import { store } from "./redux/store";
 import { ToastContainer, Flip } from "react-toastify";
+import "galmuri/dist/galmuri.css";
+import './App.css'
 
 function App() {
   return (

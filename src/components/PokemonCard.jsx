@@ -18,8 +18,7 @@ const PokemonCard = ({ pokemon, btnName }) => {
       e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
       return;
     }
-    navigate(
-      `/details/pokemon?id=${id}`);
+    navigate(`/details/pokemon?id=${id}`);
   };
 
   return (
@@ -72,6 +71,7 @@ export const PokeCard = styled.div`
   }
 `;
 export const CardBtn = styled(StButton)`
+  font-family: "Galmuri7";
   width: fit-content;
   padding: 10px 18px;
   font-size: 18px;

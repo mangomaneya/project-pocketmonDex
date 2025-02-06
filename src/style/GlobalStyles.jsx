@@ -4,7 +4,7 @@ import reset from "styled-reset";
 const GlobalStyles = createGlobalStyle`
     ${reset}
     :root{
-    font-family: Inter,system-ui,Avenir,Helvetica,Arial,sans-serif;
+    font-family: "Galmuri7";
     line-height: 1.5;
     font-weight: 400;
     color-scheme: light dark;
