@@ -11,6 +11,7 @@ const initialState = {
     id: null,
     description: "",
   },
+  randomPokemons: [],
 };
 
 const pokemonSlice = createSlice({
@@ -51,7 +52,22 @@ const pokemonSlice = createSlice({
       });
       state.foundPokemon = foundPoke;
     },
+    findRandomPoke: (state, action) => {
+      const foundPoke = MOCK_DATA.find((data) => data.id === action.payload);
+      if (foundPoke) {
+        state.randomPokemons.push(foundPoke);
+      }
+    },
+    resetRandoms: (state) => {
+      state.randomPokemons = [];
+    },
   },
 });
-export const { addInMyPoke, getOutMyPoke, findPoke } = pokemonSlice.actions;
+export const {
+  addInMyPoke,
+  getOutMyPoke,
+  findPoke,
+  findRandomPoke,
+  resetRandoms,
+} = pokemonSlice.actions;
 export default pokemonSlice.reducer;

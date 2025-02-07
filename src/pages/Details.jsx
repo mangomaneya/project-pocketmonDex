@@ -3,7 +3,6 @@ import { CardBtn } from "../components/PokemonCard";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addInMyPoke, findPoke, getOutMyPoke } from "../redux/pokemonSlice";
-import MOCK_DATA from "../constant/constant";
 import NoPokemon from "./NoPokemon";
 import NotFoundPage from "./NotFoundPage";
 // import { useEffect } from "react";
@@ -19,12 +18,11 @@ const Details = () => {
   //현재페이지의 아이디와 일치하는 포켓몬 정보 가져오기
   dispatch(findPoke(id));
 
-  //포켓몬 정보가 없을 경우 
+  //포켓몬 정보가 없을 경우
   if (!pokemon) {
-    console.log("pokemon", pokemon, !pokemon);
-    return <NotFoundPage />;
+    return <NoPokemon />;
   }
-
+console.log('pokemon', pokemon)
   const { korean_name, img_url, description, types } = pokemon;
   const isContain = myPokemons.some((pokemons) => {
     return pokemons.id === pokemon.id;
@@ -44,9 +42,9 @@ const Details = () => {
           &#8592;
           {id === 1
             ? `No.151`
-            : id < 10
+            : id > 1 && id <= 10
             ? `No.00${id - 1}`
-            : id < 100
+            : id >= 10 && id <= 100
             ? `No.0${id - 1}`
             : `N.${id - 1}`}
         </p>
@@ -61,11 +59,11 @@ const Details = () => {
         >
           {id === 151
             ? `No.001`
-            : id < 10
+            : id >= 1 && id < 9
             ? `No.00${id + 1}`
-            : id < 100
+            : id >= 9 && id < 99
             ? `No.0${id + 1}`
-            : `N.${id + 1}`}
+            : `No.${id + 1}`}
           &#8594;
         </p>
       </div>
