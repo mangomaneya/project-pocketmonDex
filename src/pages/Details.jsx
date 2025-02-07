@@ -2,32 +2,29 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { CardBtn } from "../components/PokemonCard";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addInMyPoke, getOutMyPoke } from "../redux/pokemonSlice";
+import { addInMyPoke, findPoke, getOutMyPoke } from "../redux/pokemonSlice";
 import MOCK_DATA from "../constant/constant";
 import NoPokemon from "./NoPokemon";
 import NotFoundPage from "./NotFoundPage";
 // import { useEffect } from "react";
 
 const Details = () => {
-  const myPokemons = useSelector((state) => state.myPokemonList.myPokemons); // 마이포켓몬 호출
+  const myPokemons = useSelector((state) => state.myPokemons.myPokemons); // 마이포켓몬 호출
+  const pokemon = useSelector((state) => state.myPokemons.foundPokemon);
   const dispatch = useDispatch(); // 디스패치 호출
   const navigate = useNavigate(); // 네비게이트 호출
   const location = useLocation(); // 로케이션 호출
   const queryParams = new URLSearchParams(location.search); // url경로에 있는 검색파라미터 추출
-
   const id = Number(queryParams.get("id")); // 현재 페이지 포켓몬 아이디 할당
-
   //현재페이지의 아이디와 일치하는 포켓몬 정보 가져오기
-  const pokemon = MOCK_DATA.find((data) => {
-    if (data.id === id) {
-      return data;
-    }
-  });
-  //아이디와 일치하는 데이터가 없을 경우 = undefined
+  dispatch(findPoke(id));
+
+  //포켓몬 정보가 없을 경우 
   if (!pokemon) {
-    console.log('pokemon', pokemon, !pokemon)
-    return <NotFoundPage/>
+    console.log("pokemon", pokemon, !pokemon);
+    return <NotFoundPage />;
   }
+
   const { korean_name, img_url, description, types } = pokemon;
   const isContain = myPokemons.some((pokemons) => {
     return pokemons.id === pokemon.id;

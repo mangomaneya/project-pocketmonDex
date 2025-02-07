@@ -7,7 +7,7 @@ import { useMemo } from "react";
 
 const MyPokemon = () => {
   const myPokeMons = useSelector((state) => {
-    return state.myPokemonList.myPokemons;
+    return state.myPokemons.myPokemons;
   });
 
   // 6개의 포켓볼을 만든다,

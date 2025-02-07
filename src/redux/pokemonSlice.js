@@ -1,9 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { NUMBER_SIX } from "../constant/constant";
+import MOCK_DATA, { NUMBER_SIX } from "../constant/constant";
 import { toast } from "react-toastify";
 
 const initialState = {
   myPokemons: JSON.parse(localStorage.getItem("myPokemons")) || [],
+  foundPokemon: {
+    img_url: "",
+    korean_name: "",
+    types: [],
+    id: null,
+    description: "",
+  },
 };
 
 const pokemonSlice = createSlice({
@@ -36,7 +43,15 @@ const pokemonSlice = createSlice({
       state.myPokemons = removedMyPokeMons;
       toast.info(`가라, ${action.payload.korean_name}! 몸통박치기!!`);
     },
+    findPoke: (state, action) => {
+      const foundPoke = MOCK_DATA.find((data) => {
+        if (data.id === action.payload) {
+          return data;
+        }
+      });
+      state.foundPokemon = foundPoke;
+    },
   },
 });
-export const { addInMyPoke, getOutMyPoke } = pokemonSlice.actions;
+export const { addInMyPoke, getOutMyPoke, findPoke } = pokemonSlice.actions;
 export default pokemonSlice.reducer;
