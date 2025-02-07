@@ -16,7 +16,7 @@ const Title = styled.h1`
   font-size: 2.5em;
   font-weight: 900;
   text-align: center;
-  color: rgb(35,35,35);
+  color: rgb(35, 35, 35);
 `;
 export const DexContainer = styled.div`
   background-color: #f9f9f9;

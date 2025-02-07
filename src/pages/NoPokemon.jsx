@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import MOCK_DATA from "../constant/constant";
+import MOCK_DATA, { MAX_POKEID, MIN_POKEID } from "../constant/constant";
 import { findRandomPoke, resetRandoms } from "../redux/pokemonSlice";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -7,7 +7,6 @@ import styled from "styled-components";
 import { StyledPage } from "./NotFoundPage";
 import { StyledRound } from "./Details";
 import { useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
 
 const NoPokemon = () => {
   const dispatch = useDispatch();
@@ -15,24 +14,21 @@ const NoPokemon = () => {
   const randomPokemons = useSelector(
     (state) => state.myPokemons.randomPokemons
   );
-  const minNumOfPokeId = MOCK_DATA[0].id;
-  const maxNumOfPokeId = MOCK_DATA[MOCK_DATA.length - 1].id;
-  const number = 3; //랜덤으로 선택할 포켓몬 수
-  // console.log(minNumOfPokeId, maxNumOfPokeId);
+
+  const numberOfRandoms = 3; //랜덤으로 선택할 포켓몬 수
 
   useEffect(() => {
     dispatch(resetRandoms());
-
-    const tempArray = new Array(number).fill(null).map(() => {
+    const tempArray = new Array(numberOfRandoms).fill(null).map(() => {
       return Math.floor(
-        Math.random() * (maxNumOfPokeId - minNumOfPokeId + 1) + minNumOfPokeId
+        Math.random() * (MAX_POKEID - MIN_POKEID + 1) + MIN_POKEID
       ); //1부터 151까지의 랜덤한 정수 변수
     });
 
     tempArray.forEach((id) => {
       dispatch(findRandomPoke(id));
     });
-  }, [dispatch, maxNumOfPokeId, minNumOfPokeId]);
+  }, [dispatch]);
   console.log("randomPokemons", randomPokemons);
   return (
     // 오박사 이미지 가져오기
@@ -83,5 +79,3 @@ const StNoPokemonDiv = styled.div`
     min-width: 420px;
   }
 `;
-
-

@@ -28,7 +28,8 @@ const Router = () => {
             transition={Flip}
           />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Home />}>
+            </Route>
             <Route path="/dex" element={<Dex />}></Route>
             <Route path="/details/:id" element={<Details />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>

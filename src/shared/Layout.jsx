@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import styled from "styled-components";
 
 const Layout = ({ children }) => {
@@ -16,6 +16,7 @@ const Layout = ({ children }) => {
         </Link>
       )}
       {children}
+      <Outlet/>
     </StLayout>
   );
 };

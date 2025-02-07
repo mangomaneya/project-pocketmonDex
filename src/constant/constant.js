@@ -1,4 +1,5 @@
 export const NUMBER_SIX = 6;
+
 export const MOCK_DATA = [
   {
     img_url:
@@ -1231,4 +1232,6 @@ export const MOCK_DATA = [
       "에스퍼 타입의 전설의 포켓몬으로, 희귀하고 신비로운 능력을 가집니다.",
   },
 ];
+export const MIN_POKEID = MOCK_DATA[0].id;
+export const MAX_POKEID = MOCK_DATA[MOCK_DATA.length - 1].id;
 export default MOCK_DATA;

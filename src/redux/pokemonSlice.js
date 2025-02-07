@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import MOCK_DATA, { NUMBER_SIX } from "../constant/constant";
+import MOCK_DATA, {
+  MAX_POKEID,
+  MIN_POKEID,
+  NUMBER_SIX,
+} from "../constant/constant";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -12,6 +16,7 @@ const initialState = {
     description: "",
   },
   randomPokemons: [],
+  arrOfRandomNumber: [],
 };
 
 const pokemonSlice = createSlice({
@@ -61,6 +66,13 @@ const pokemonSlice = createSlice({
     resetRandoms: (state) => {
       state.randomPokemons = [];
     },
+    setArrOfRandomNum: (state, action) => {
+      state.arrOfRandomNumber = new Array(action.payload).fill(null).map(() => {
+        return Math.floor(
+          Math.random() * (MAX_POKEID - MIN_POKEID + 1) + MIN_POKEID
+        );
+      });
+    },
   },
 });
 export const {
@@ -69,5 +81,6 @@ export const {
   findPoke,
   findRandomPoke,
   resetRandoms,
+  setArrOfRandomNum,
 } = pokemonSlice.actions;
 export default pokemonSlice.reducer;
