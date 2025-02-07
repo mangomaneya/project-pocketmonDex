@@ -1,19 +1,21 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+
 const Layout = ({ children }) => {
   // const navigate = useNavigate();
   // const location = useLocation();
   return (
     <StLayout>
       {/* 현재페이지 경로가 "/" 이면 img를 안보여주기... location? */}
-      {/* <Link to={"/"}> */}
+      <Link to={"/"}>
         <img
-          src="/src/assets/pokemon-logo.png"
+          src="/src/assets/pokemonLogo.png"
           alt="Pokemon Logo"
           id="pokemon-logo"
         ></img>
-      {/* </Link> */}
+        
+      </Link>
       {children}
     </StLayout>
   );

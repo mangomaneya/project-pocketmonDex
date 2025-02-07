@@ -13,22 +13,23 @@ function App() {
     <Provider store={store}>
       <GlobalStyles />
       <div className="app-container">
-        <Layout>
-          <StyledToastContainer
-            position="top-center"
-            autoClose={2500}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss={false}
-            draggable={false}
-            pauseOnHover
-            theme="light"
-            transition={Flip}
-          />
-          <Router />
-        </Layout>
+        <Router>
+          {/* <Layout> */}
+            <StyledToastContainer
+              position="top-center"
+              autoClose={2500}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss={false}
+              draggable={false}
+              pauseOnHover
+              theme="light"
+              transition={Flip}
+            />
+          {/* </Layout> */}
+        </Router>
       </div>
     </Provider>
   );
