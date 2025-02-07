@@ -36,11 +36,17 @@ const Details = () => {
       <div className="id-container">
         <p
           className="before"
-          onClick={() => navigate(`/details/pokemon?id=${pokemon.id - 1}`)}
+          onClick={() =>
+            navigate(
+              `/details/pokemon?id=${pokemon.id === 1 ? 151 : pokemon.id - 1}`
+            )
+          }
         >
           {" "}
           &#8592;
-          {id < 10
+          {id === 1
+            ? `No.151`
+            : id < 10
             ? `No.00${id - 1}`
             : id < 100
             ? `No.0${id - 1}`
@@ -51,9 +57,15 @@ const Details = () => {
         </p>
         <p
           className="after"
-          onClick={() => navigate(`/details/pokemon?id=${pokemon.id + 1}`)}
+          onClick={() =>
+            navigate(
+              `/details/pokemon?id=${pokemon.id === 151 ? 1 : pokemon.id + 1}`
+            )
+          }
         >
-          {id < 10
+          {id === 151
+            ? `No.001`
+            : id < 10
             ? `No.00${id + 1}`
             : id < 100
             ? `No.0${id + 1}`
