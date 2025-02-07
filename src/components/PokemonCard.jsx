@@ -18,6 +18,12 @@ const PokemonCard = ({ pokemon, btnName }) => {
       e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
       return;
     }
+    // if (id < 1 || id > 151) {
+    //   navigate(`*`);
+    // }
+    // if (typeof id !== "number") {
+    //   navigate(`*`);
+    // }
     navigate(`/details/pokemon?id=${id}`);
   };
 
@@ -72,13 +78,12 @@ export const PokeCard = styled.div`
   }
 `;
 export const CardBtn = styled(StButton)`
-  
   width: fit-content;
   padding: 10px 18px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
-  
+
   color: #ffffff;
 `;

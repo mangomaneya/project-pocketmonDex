@@ -4,31 +4,34 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addInMyPoke, getOutMyPoke } from "../redux/pokemonSlice";
 import MOCK_DATA from "../constant/constant";
+import NoPokemon from "./NoPokemon";
+import NotFoundPage from "./NotFoundPage";
+// import { useEffect } from "react";
 
 const Details = () => {
-  const dispatch = useDispatch();
-  //쿼리 파라미터 불러오기
-  const navigate = useNavigate();
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  // 변수에 쿼리 파라미터 할당
-  const id = Number(queryParams.get("id"));
+  const myPokemons = useSelector((state) => state.myPokemonList.myPokemons); // 마이포켓몬 호출
+  const dispatch = useDispatch(); // 디스패치 호출
+  const navigate = useNavigate(); // 네비게이트 호출
+  const location = useLocation(); // 로케이션 호출
+  const queryParams = new URLSearchParams(location.search); // url경로에 있는 검색파라미터 추출
 
+  const id = Number(queryParams.get("id")); // 현재 페이지 포켓몬 아이디 할당
+
+  //현재페이지의 아이디와 일치하는 포켓몬 정보 가져오기
   const pokemon = MOCK_DATA.find((data) => {
     if (data.id === id) {
       return data;
     }
   });
-  // console.log("pokemon", pokemon);
+  //아이디와 일치하는 데이터가 없을 경우 = undefined
+  if (!pokemon) {
+    console.log('pokemon', pokemon, !pokemon)
+    return <NotFoundPage/>
+  }
   const { korean_name, img_url, description, types } = pokemon;
-
-  //해당페이지 포켓몬이 마이포켓몬에 포함되어있는지 체크
-  const myPokemons = useSelector((state) => state.myPokemonList.myPokemons);
-  // console.log('myPokemons', myPokemons)
   const isContain = myPokemons.some((pokemons) => {
     return pokemons.id === pokemon.id;
   });
-
   return (
     <StDiv>
       <h1>{korean_name}</h1>
@@ -37,9 +40,7 @@ const Details = () => {
         <p
           className="before"
           onClick={() =>
-            navigate(
-              `/details/pokemon?id=${pokemon.id === 1 ? 151 : pokemon.id - 1}`
-            )
+            navigate(`/details/pokemon?id=${id === 1 ? 151 : id - 1}`)
           }
         >
           {" "}
@@ -58,9 +59,7 @@ const Details = () => {
         <p
           className="after"
           onClick={() =>
-            navigate(
-              `/details/pokemon?id=${pokemon.id === 151 ? 1 : pokemon.id + 1}`
-            )
+            navigate(`/details/pokemon?id=${id === 151 ? 1 : id + 1}`)
           }
         >
           {id === 151

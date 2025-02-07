@@ -36,4 +36,10 @@ const StyledPage = styled.div`
   p {
     margin-top: 36px;
   }
+
+  @media (max-width: 740px) {
+    h1 {
+      display: flex;
+    }
+  }
 `;
