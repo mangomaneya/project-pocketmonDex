@@ -23,7 +23,7 @@ export default NotFoundPage;
 
 const StyledPage = styled.div`
   font-size: 3em;
-  color: #222222;
+  /* color: #222222; */
   font-weight: bold;
   line-height: 1.4em;
   h1 {

@@ -116,6 +116,8 @@ const StDiv = styled.div`
   background-repeat: repeat;
   border-radius: 12px;
   padding: 48px 0;
+  transition: all ease-in-out 0.2s;
+
   h1 {
     font-size: 2em;
     margin-bottom: 24px;
@@ -143,11 +145,18 @@ const StDiv = styled.div`
   .after {
     color: #b9b9b9;
     cursor: pointer;
-    transition: all ease-in-out 0.2s;
 
     &:hover {
       transform: translateY(-1.5px);
       text-decoration: underline 2px;
+    }
+  }
+  @media (max-width: 1742px) {
+    margin-top: 32px;
+  }
+  @media (max-width: 740px) {
+    .id-container {
+      gap: 24px;
     }
   }
 `;
