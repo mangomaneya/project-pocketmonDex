@@ -14,7 +14,6 @@ function App() {
       <GlobalStyles />
       <div className="app-container">
         <Router>
-          {/* <Layout> */}
             <StyledToastContainer
               position="top-center"
               autoClose={2500}
@@ -28,7 +27,6 @@ function App() {
               theme="light"
               transition={Flip}
             />
-          {/* </Layout> */}
         </Router>
       </div>
     </Provider>
