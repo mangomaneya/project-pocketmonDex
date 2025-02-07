@@ -3,10 +3,15 @@ import MOCK_DATA from "../constant/constant";
 import { findRandomPoke, resetRandoms } from "../redux/pokemonSlice";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
+import { StyledPage } from "./NotFoundPage";
+import { StyledRound } from "./Details";
+import { useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 
 const NoPokemon = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const randomPokemons = useSelector(
     (state) => state.myPokemons.randomPokemons
   );
@@ -37,17 +42,46 @@ const NoPokemon = () => {
 
     // 1~151 사이의 랜덤한 숫자를 3개 고르는 함수
     // 그 숫자로 포켓몬 조회
-    // 포켓몬 이미지만 포켓볼에 담아서 호버시에 보이도록
     // 포켓몬은 클릭하면 상세페이지로 이동
 
     // 포켓몬 조회하는 함수를 redux로...
-    // 초기값은 빈 객체
-    // 액션 페이로드로 아이디값을 받아서 조회하고, 객체에 넣어준다.
+    // 초기값은 빈 배열
+    // 액션 페이로드로 아이디값을 받아서 조회하고, 배열에 넣어준다.
     //
-    <div>{randomPokemons.map((pokemon)=>{
-      return <div key={pokemon.id}>{pokemon.korean_name}</div>
-    })}</div>
+    <StNoPokemonDiv>
+      <img id="doctorOhImg" src="/src/assets/doctor_oh.jpg" alt="oh박사" />
+
+      <StyledPage>
+        <p>
+          바깥은 혼자 돌아다니기 위험하단다!
+          <br />이 아이들 중에 하나를 데려가렴.{" "}
+        </p>
+      </StyledPage>
+      <StyledRound>
+        {randomPokemons.map((pokemon) => {
+          return (
+            <div className="ball" key={pokemon.id}>
+              <img
+                src={pokemon.img_url}
+                onClick={() => navigate(`/details/pokemon?id=${pokemon.id}`)}
+              ></img>
+            </div>
+          );
+        })}
+      </StyledRound>
+    </StNoPokemonDiv>
   );
 };
 
 export default NoPokemon;
+const StNoPokemonDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #doctorOhImg {
+    width: 50%;
+    min-width: 420px;
+  }
+`;
+
+

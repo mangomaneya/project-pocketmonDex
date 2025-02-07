@@ -4,8 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { addInMyPoke, findPoke, getOutMyPoke } from "../redux/pokemonSlice";
 import NoPokemon from "./NoPokemon";
-import NotFoundPage from "./NotFoundPage";
-// import { useEffect } from "react";
+// import NotFoundPage from "./NotFoundPage";
 
 const Details = () => {
   const myPokemons = useSelector((state) => state.myPokemons.myPokemons); // 마이포켓몬 호출
@@ -22,7 +21,6 @@ const Details = () => {
   if (!pokemon) {
     return <NoPokemon />;
   }
-console.log('pokemon', pokemon)
   const { korean_name, img_url, description, types } = pokemon;
   const isContain = myPokemons.some((pokemons) => {
     return pokemons.id === pokemon.id;
@@ -166,7 +164,7 @@ const StDiv = styled.div`
     }
   }
 `;
-const StyledRound = styled.div`
+export const StyledRound = styled.div`
   display: flex;
   gap: 36px;
   margin-top: 24px;

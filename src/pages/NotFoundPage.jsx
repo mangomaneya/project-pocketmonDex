@@ -21,7 +21,7 @@ const NotFoundPage = () => {
 
 export default NotFoundPage;
 
-const StyledPage = styled.div`
+export const StyledPage = styled.div`
   font-size: 3em;
   /* color: #222222; */
   font-weight: bold;
