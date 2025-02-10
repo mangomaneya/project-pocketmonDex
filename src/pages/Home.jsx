@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <StContainer>
       <img
-        src="/public/assets/pokemonLogo.png"
+        src="/assets/pokemonLogo.png"
         alt="Pokemon Logo"
         className="pokemon-logo"
       />
