@@ -48,6 +48,7 @@ const pokemonSlice = createSlice({
       });
       state.myPokemons = removedMyPokeMons;
       toast.info(`가라, ${action.payload.korean_name}! 몸통박치기!!`);
+      localStorage.setItem("myPokemons", JSON.stringify(state.myPokemons));
     },
     findPoke: (state, action) => {
       const foundPoke = MOCK_DATA.find((data) => {
