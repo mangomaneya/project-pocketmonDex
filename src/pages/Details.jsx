@@ -177,7 +177,7 @@ export const StyledRound = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("/src/assets/pokeball.png");
+    background-image: url("/public/assets/pokeball.png");
     background-size: contain;
     /* opacity: 0.5; */
   }

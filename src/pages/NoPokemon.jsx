@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import MOCK_DATA, { MAX_POKEID, MIN_POKEID } from "../constant/constant";
+import { MAX_POKEID, MIN_POKEID } from "../constant/constant";
 import { findRandomPoke, resetRandoms } from "../redux/pokemonSlice";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -45,7 +45,7 @@ const NoPokemon = () => {
     // 액션 페이로드로 아이디값을 받아서 조회하고, 배열에 넣어준다.
     //
     <StNoPokemonDiv>
-      <img id="doctorOhImg" src="/src/assets/doctor_oh.jpg" alt="oh박사" />
+      <img id="doctorOhImg" src="/public/assets/doctor_oh.jpg" alt="oh박사" />
 
       <StyledPage>
         <p>

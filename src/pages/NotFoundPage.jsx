@@ -7,7 +7,7 @@ const NotFoundPage = () => {
   return (
     <StyledPage>
       <h1>
-        4<img src="/src/assets/pokeball.png"></img>4
+        4<img src="/public/assets/pokeball.png"></img>4
       </h1>
       <p>
         Sorry
