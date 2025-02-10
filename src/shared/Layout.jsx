@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
       {location.pathname !== "/" && (
         <Link to={"/"}>
           <img
-            src="/public/assets/pokemonLogo.png"
+            src="/assets/pokemonLogo.png"
             alt="Pokemon Logo"
             id="pokemon-logo"
           ></img>

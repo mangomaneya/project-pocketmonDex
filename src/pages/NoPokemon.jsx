@@ -45,7 +45,7 @@ const NoPokemon = () => {
     // 액션 페이로드로 아이디값을 받아서 조회하고, 배열에 넣어준다.
     //
     <StNoPokemonDiv>
-      <img id="doctorOhImg" src="/public/assets/doctor_oh.jpg" alt="oh박사" />
+      <img id="doctorOhImg" src="/assets/doctor_oh.jpg" alt="oh박사" />
 
       <StyledPage>
         <p>

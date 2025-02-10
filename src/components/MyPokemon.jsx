@@ -33,7 +33,7 @@ const MyPokemon = () => {
       {ballOfSix.map((ball, index) => {
         return (
           <BallBox key={index}>
-            <img src="/src/assets/pokeball.png" alt="pokemon ball" />
+            <img src="/assets/pokeball.png" alt="pokemon ball" />
           </BallBox>
         );
       })}
