@@ -38,8 +38,8 @@ export const CardBtn = styled(StButton)`
 `;
 
 const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
-  const { id, korean_name, img_url, description } = pokemon;
-
+  const { id, korean_name, img_url, description, types } = pokemon;
+  console.log("addInMyPoke", addInMyPoke);
   const navigate = useNavigate();
   const navigateToDetail = (e) => {
     if (e.target.tagName === "BUTTON") {
@@ -48,13 +48,8 @@ const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
       return;
     }
     navigate(
-      `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}`
+      `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}&types=${types}`
     );
-
-    //✅ 1. 온클릭이벤트를 "겟 아이디 포 네비게이트" 가 아니라 "네비게이트 투 디테일" 로 변경
-    //✅2. 이 때 넘겨주는 포케몬 데이터를 쿼리파라미터로 넘겨준다.
-    // 2-2. `/detail?id=${id}&name=${}`이런 식으로...
-    //
   };
 
   return (
