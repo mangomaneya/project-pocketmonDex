@@ -75,9 +75,9 @@
 
 ## 🔥 트러블 슈팅
 - [[트러블슈팅] 포켓몬 데이터를 supabase에 넣어서 사용해보자!!](https://mangoman-e-ya.tistory.com/62)
+- [[트러블슈팅] 몬스터볼 6개, 포켓몬 6마리, 오류 6번 발생 (useMemo, 구조분해할당)](https://mangoman-e-ya.tistory.com/67)
 
 <br>
-
 
 ## 🏷 TechStack
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
