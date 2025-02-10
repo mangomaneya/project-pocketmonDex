@@ -13,6 +13,7 @@ export const PokemonProvider = ({ children }) => {
   const [myPokeMons, setMyPokeMons] = useState(
     JSON.parse(localStorage.getItem("myPokemons")) || []
   );
+
   //선택한 포켓몬을 마이포켓몬에 추가
   const addInMyPoke = (pokemon) => {
     //최대포켓몬 수 설정
@@ -30,7 +31,7 @@ export const PokemonProvider = ({ children }) => {
     }
     setMyPokeMons((prev) => [...prev, pokemon]);
     //마이포켓몬 데이터 확인
-    console.log("myPokeMons", myPokeMons);
+    // console.log("myPokeMons", myPokeMons);
   };
 
   //선택한 포켓몬을 마이포켓몬에서 제거

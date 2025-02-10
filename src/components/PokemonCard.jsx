@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import StButton from "../style/StButton";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { PokemonContext } from "../context/pokemonContext";
+import { useDispatch } from "react-redux";
+import { addInMyPoke, getOutMyPoke } from "../redux/pokemonSlice";
+// import { toast } from "react-toastify";
 
 const PokemonCard = ({ pokemon, btnName }) => {
-  //콘텍스트 호출
-  const { addInMyPoke, getOutMyPoke } = useContext(PokemonContext);
+  const dispatch = useDispatch();
+
   //prop으로 받은 포켓몬 구조분해할당
-  const { id, korean_name, img_url, description, types } = pokemon;
+  const { id, korean_name, img_url, description } = pokemon;
   //디테일페이지 이동 구현
   const navigate = useNavigate();
   const navigateToDetail = (e) => {
@@ -17,10 +18,13 @@ const PokemonCard = ({ pokemon, btnName }) => {
       e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
       return;
     }
-    navigate(
-      `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}&types=${types}`,
-      { state: { pokemon } } //포켓몬 스테이트 전달
-    );
+    // if (id < 1 || id > 151) {
+    //   navigate(`*`);
+    // }
+    // if (typeof id !== "number") {
+    //   navigate(`*`);
+    // }
+    navigate(`/details/pokemon?id=${id}`);
   };
 
   return (
@@ -28,13 +32,17 @@ const PokemonCard = ({ pokemon, btnName }) => {
       <PokeCard key={id} onClick={(event) => navigateToDetail(event)} id={id}>
         <p>{korean_name}</p>
         <img src={img_url}></img>
-        <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
+        <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.${id}`}</p>
         <p className="hide">{description}</p>
         {/* 버튼명에 따라 온클릭 이벤트 구분 */}
         {btnName === "추가" ? (
-          <CardBtn onClick={() => addInMyPoke(pokemon)}>{btnName}</CardBtn>
+          <CardBtn onClick={() => dispatch(addInMyPoke(pokemon))}>
+            {btnName}
+          </CardBtn>
         ) : (
-          <CardBtn onClick={() => getOutMyPoke(pokemon)}>{btnName}</CardBtn>
+          <CardBtn onClick={() => dispatch(getOutMyPoke(pokemon))} $checked>
+            {btnName}
+          </CardBtn>
         )}
       </PokeCard>
     </>
@@ -62,7 +70,8 @@ export const PokeCard = styled.div`
   transition: all ease-in-out 0.2s;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
   }
   .hide {
     display: none;
@@ -72,8 +81,9 @@ export const CardBtn = styled(StButton)`
   width: fit-content;
   padding: 10px 18px;
   font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
-  background-color: rgb(255, 0, 0);
+
   color: #ffffff;
 `;

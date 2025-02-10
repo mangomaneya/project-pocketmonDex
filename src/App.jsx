@@ -1,15 +1,14 @@
-import { PokemonProvider } from "./context/pokemonContext";
+import { Provider } from "react-redux";
 import Router from "./shared/Router";
-import GlobalStyles from "./style/GlobalStyles";
+import { store } from "./redux/store";
+import "galmuri/dist/galmuri.css";
+import "./App.css";
 
 function App() {
   return (
-    <PokemonProvider>
-      <GlobalStyles />
-      <div className="app-container">
-        <Router />
-      </div>
-    </PokemonProvider>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   );
 }
 

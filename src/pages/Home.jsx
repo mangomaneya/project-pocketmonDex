@@ -1,24 +1,19 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import StButton from "../style/StButton";
 import StContainer from "../style/StContainer";
 
 const Home = () => {
-  const navigate = useNavigate();
 
   return (
     <StContainer>
       <img
-        src="/src/assets/pokemon-logo.png"
+        src="/src/assets/pokemonLogo.png"
         alt="Pokemon Logo"
         className="pokemon-logo"
       />
-      <StButton
-        onClick={() => {
-          navigate("/dex");
-        }}
-      >
-        포켓몬 도감 시작하기
-      </StButton>
+      <Link to={"/dex"}>
+        <StButton>포켓몬 도감 시작하기</StButton>
+      </Link>
     </StContainer>
   );
 };
