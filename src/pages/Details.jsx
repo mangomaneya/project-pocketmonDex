@@ -1,23 +1,25 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import { CardBtn } from "../components/PokemonCard";
 import styled from "styled-components";
+import { PokemonContext } from "../context/pokemonContext";
 
 const Details = () => {
+  //콘텍스트 호출
+  const { addInMyPoke } = useContext(PokemonContext);
+  //쿼리 파라미터 불러오기
   const navigate = useNavigate();
   const location = useLocation();
-
-  //✅ 1. useLocation으로 현재 위치를 변수에 할당하고 / const location = useLocation()
-  //✅ 2. location의 쿼리스트링을 파싱 / const queryParams = new URLSearchParams(location.search)
-  //✅ 3. 파싱한 데이터에서 필요한 데이터값을 추출 / const id = queryParams.get("id")
-  //🚫 (선택사항) 쿼리 숨기기 (window.history.replaceState({},null, location.pathname) 🚫새로고침 이슈발생
   const queryParams = new URLSearchParams(location.search);
-
+  // 변수에 쿼리 파라미터 할당
   const id = queryParams.get("id");
   const name = queryParams.get("name");
   const img = queryParams.get("img");
   const desc = queryParams.get("desc");
   const types = queryParams.get("types");
-  // window.history.replaceState({}, null, location.pathname);
+  // 포켓몬 추가 기능용 스테이트 설정
+  const { pokemon } = location.state || {};
+  // window.history.replaceState({}, null, location.pathname); url 주소의 쿼리 숨기기 - 새로고침 시 오류 발생되어 취소
 
   return (
     <StDiv>
@@ -26,6 +28,7 @@ const Details = () => {
       <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
       <p>{types}</p>
       <p>{desc}</p>
+      {/* 덱스페이지로 돌아가기 */}
       <CardBtn
         onClick={() => {
           navigate("/dex");
@@ -33,6 +36,7 @@ const Details = () => {
       >
         뒤로가기
       </CardBtn>
+      <CardBtn onClick={() => addInMyPoke(pokemon)}>추가하기</CardBtn>
     </StDiv>
   );
 };

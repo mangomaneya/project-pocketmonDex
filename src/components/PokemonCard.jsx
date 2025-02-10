@@ -1,6 +1,47 @@
 import styled from "styled-components";
 import StButton from "../style/StButton";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { PokemonContext } from "../context/pokemonContext";
+
+const PokemonCard = ({ pokemon, btnName }) => {
+  //콘텍스트 호출
+  const { addInMyPoke, getOutMyPoke } = useContext(PokemonContext);
+  //prop으로 받은 포켓몬 구조분해할당
+  const { id, korean_name, img_url, description, types } = pokemon;
+  //디테일페이지 이동 구현
+  const navigate = useNavigate();
+  const navigateToDetail = (e) => {
+    //클릭한 타겟이 버튼이면 처리되지 않도록 예외처리
+    if (e.target.tagName === "BUTTON") {
+      e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
+      return;
+    }
+    navigate(
+      `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}&types=${types}`,
+      { state: { pokemon } } //포켓몬 스테이트 전달
+    );
+  };
+
+  return (
+    <>
+      <PokeCard key={id} onClick={(event) => navigateToDetail(event)} id={id}>
+        <p>{korean_name}</p>
+        <img src={img_url}></img>
+        <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
+        <p className="hide">{description}</p>
+        {/* 버튼명에 따라 온클릭 이벤트 구분 */}
+        {btnName === "추가" ? (
+          <CardBtn onClick={() => addInMyPoke(pokemon)}>{btnName}</CardBtn>
+        ) : (
+          <CardBtn onClick={() => getOutMyPoke(pokemon)}>{btnName}</CardBtn>
+        )}
+      </PokeCard>
+    </>
+  );
+};
+
+export default PokemonCard;
 
 export const PokeCard = styled.div`
   color: black;
@@ -36,37 +77,3 @@ export const CardBtn = styled(StButton)`
   background-color: rgb(255, 0, 0);
   color: #ffffff;
 `;
-
-const PokemonCard = ({ getOutMyPoke, addInMyPoke, pokemon, btnName }) => {
-  const { id, korean_name, img_url, description, types } = pokemon;
-  console.log("addInMyPoke", addInMyPoke);
-  const navigate = useNavigate();
-  const navigateToDetail = (e) => {
-    if (e.target.tagName === "BUTTON") {
-      // console.log("클릭한 것은 ", e.target);
-      e.stopPropagation(); //이벤트가 부모요소로 전달되지 않도록 차단
-      return;
-    }
-    navigate(
-      `/details/value?id=${id}&name=${korean_name}&img=${img_url}&desc=${description}&types=${types}`
-    );
-  };
-
-  return (
-    <>
-      <PokeCard key={id} onClick={(event) => navigateToDetail(event)} id={id}>
-        <p>{korean_name}</p>
-        <img src={img_url}></img>
-        <p>{id < 10 ? `No.00${id}` : id < 100 ? `No.0${id}` : `N.0${id}`}</p>
-        <p className="hide">{description}</p>
-        {btnName === "추가" ? (
-          <CardBtn onClick={() => addInMyPoke(pokemon)}>{btnName}</CardBtn>
-        ) : (
-          <CardBtn onClick={() => getOutMyPoke(pokemon)}>{btnName}</CardBtn>
-        )}
-      </PokeCard>
-    </>
-  );
-};
-
-export default PokemonCard;
