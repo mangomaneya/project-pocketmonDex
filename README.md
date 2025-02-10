@@ -2,6 +2,8 @@
 
 > 이 프로젝트는 스파르타의 내일배움캠프를 통해 개인과제로 제작되었습니다.
 
+<br>
+
 ## ✨ 프로젝트 소개
 - 작업기간 : 2025/02/03 ~ 2025/02/10 
 - React vite를 사용하여 프로젝트를 생성했습니다.
@@ -10,9 +12,13 @@
 - React의 상태관리와 이벤트핸들링을 활용하여, 포켓몬 정보를 다루는 작은 애플리케이션을 완성했습니다. 
 - git branch전략을 사용하여 prop-drilling/context/RTK 세가지 상태관리 방식을 적용했습니다. 
 
+<br>
+
 ## 🖥️ 사이트 소개
 - 배포사이트 : [포켓몬 도감]()
 ![Image](https://github.com/user-attachments/assets/2c1bff24-0277-43a9-b5e5-b3cf1ccf4d59)
+
+<br>
 
 ## 🛠️ 주요기능 및 구조 
 - 반응형 레이아웃
@@ -65,8 +71,12 @@
 └─ yarn.lock
 
 ```
+
+
 ## 🔥 트러블 슈팅
 - [[트러블슈팅] 포켓몬 데이터를 supabase에 넣어서 사용해보자!!](https://mangoman-e-ya.tistory.com/62)
+
+<br>
 
 
 ## 🏷 TechStack
