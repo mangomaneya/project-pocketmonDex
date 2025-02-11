@@ -15,7 +15,7 @@
 <br>
 
 ## 🖥️ 사이트 소개
-- 배포사이트 : [포켓몬 도감](https://project-pocketmon-m09znflxf-kiri-lees-projects.vercel.app/)
+- 배포사이트 : [포켓몬 도감](https://project-pocketmon-dex.vercel.app/)
 ![Image](https://github.com/user-attachments/assets/2c1bff24-0277-43a9-b5e5-b3cf1ccf4d59)
 
 <br>
